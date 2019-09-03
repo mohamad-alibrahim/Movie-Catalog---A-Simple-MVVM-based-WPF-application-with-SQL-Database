@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls;
 
 namespace MovieCatalog
 {
@@ -68,6 +69,8 @@ namespace MovieCatalog
          */
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
+        try
+        {
             Movie movie = new Movie();
             movie.Title = Title_TBox.Text;
             movie.ReleaseYear = int.Parse(ReleaseYear_TBox.Text);
@@ -75,6 +78,15 @@ namespace MovieCatalog
             movie.Duration = int.Parse(duration_TBox.Text);
 
             MovieVM.AddRecordToRepo(movie);
+         }
+         
+         catch
+         {
+         
+                         MessageBox.Show("The value you entered is not valid, please review the values ", "warning", MessageBoxButton.OK, MessageBoxImage.Error);
+
+         
+         }
         }
 
         /*
